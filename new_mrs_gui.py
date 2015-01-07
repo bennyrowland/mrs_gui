@@ -76,7 +76,7 @@ class mrs_gui(QtGui.QMainWindow):
         self.show()
 
     def newFile(self):
-        self.text.clear()
+        self.centralWidget().scene().set_model(FlowModel())
 
     def saveFile(self):
         filename = QtGui.QFileDialog.getSaveFileName(self, 'Save File', os.getenv('HOME'))
@@ -85,7 +85,8 @@ class mrs_gui(QtGui.QMainWindow):
 
     def openFile(self):
         filename = QtGui.QFileDialog.getOpenFileName(self, 'Open File', os.getenv('HOME'))
-        self.__model = open_model(self.__model, filename)
+        self.__model = open_model(filename)
+        self.centralWidget().scene().set_model(self.__model)
 
 def main():
     app = QtGui.QApplication(sys.argv)
