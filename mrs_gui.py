@@ -51,9 +51,12 @@ if __name__ == "__main__":
                                       {"name": "Water Ref", "type": 1},
                                       ])
     flow_model.set_data(1, "inputs", [{"name": "Grom", "type": 2}])
-    flow_model.set_data(0, "connections", [{"output": 0,
-                                            "input": 0,
-                                            "step": 1}])
+    #flow_model.set_data(0, "connections", [{"output": 0,
+    #                                        "input": 0,
+    #                                        "step": 1}])
+
+    flow_model.make_connection(0, 0, 1, 0)
+    #flow_model.break_connection(0, 0, 1, 0)
 
     flow_model.remove_item(3)
 
