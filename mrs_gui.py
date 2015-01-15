@@ -5,7 +5,7 @@ import sys
 
 from pyflow.view import FlowScene
 from pyflow.model import FlowModel
-import pyflow.save_load
+#import pyflow.save_load
 import pyflow
 
 if __name__ == "__main__":
@@ -55,10 +55,18 @@ if __name__ == "__main__":
     #                                        "input": 0,
     #                                        "step": 1}])
 
-    flow_model.make_connection(0, 0, 1, 0)
+    flow_scene.make_connection(0, 0, 1, 0)
     #flow_model.break_connection(0, 0, 1, 0)
 
     flow_model.remove_item(3)
+
+    aux_widget = QtGui.QWidget()
+    aux_widget.setFixedSize(170, 60)
+    button = QtGui.QPushButton("Press Me")
+    button.clicked.connect(main_window.close)
+    button.setParent(aux_widget)
+
+    flow_model.set_data(1, "auxilliary", aux_widget)
 
     #flow_model = FlowModel()
     #flow_model.add_item()
