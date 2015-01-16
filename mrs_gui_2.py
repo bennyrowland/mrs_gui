@@ -3,7 +3,7 @@ __author__ = 'ben'
 from PySide import QtGui, QtCore
 
 from pyflow.model import FlowModel
-from pyflow.view import FlowScene2
+from pyflow.view.scene import FlowScene
 
 import pyflow
 
@@ -70,7 +70,7 @@ if __name__ == "__main__":
 
     # create an empty model
     model = FlowModel()
-    flow_scene = FlowScene2()
+    flow_scene = FlowScene()
     flow_scene.set_model(model)
     # rows with a blank index are top level items (Steps)
     model.insertRow(0, QtCore.QModelIndex())
