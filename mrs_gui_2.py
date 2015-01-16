@@ -15,28 +15,22 @@ class SampleProxy(QtGui.QAbstractProxyModel):
         self.setSourceModel(self.parent_index.model())
 
     def index(self, row, column, parent):
-        #print "index called"
         return self.createIndex(row, column, QtCore.QModelIndex())
 
     def parent(self, index):
         return QtCore.QModelIndex()
 
     def rowCount(self, parent):
-        #print "rowCount called"
-        print parent
         if parent.isValid():
             return 0
-        #print "returning %d" % self.sourceModel().rowCount(self.parent_index)
         return self.sourceModel().rowCount(self.parent_index)
 
     def columnCount(self, parent):
-        #print "columnCount called"
         if parent.isValid():
             return 0
         return 2
 
     def hasChildren(self, parent):
-        #print "hasChildren called"
         if parent.isValid():
             # we want to display a flat list so no item has children
             return False
@@ -45,11 +39,9 @@ class SampleProxy(QtGui.QAbstractProxyModel):
         return self.sourceModel.rowCount(self.parent_index) > 0
 
     def mapToSource(self, proxy_index):
-        #print "mapToSource called %s" % proxy_index
         return self.sourceModel().index(proxy_index.row(), proxy_index.column(), self.parent_index)
 
     def mapFromSource(self, source_index):
-        #print "mapFromSource called %s" % source_index
         if source_index.parent() == self.parent_index:
             return self.createIndex(source_index.row(), source_index.column(), QtCore.QModelIndex)
         else:
